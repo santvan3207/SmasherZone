@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Discover Sports Venues | Smashers Zone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Main Style -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5f7fa;
+        }
+
+        /* HERO */
+        .venues-hero {
+            background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+            url("https://images.unsplash.com/photo-1521412644187-c49fa049e84d") center/cover no-repeat;
+            color: #fff;
+            padding: 80px 0;
+        }
+        .navbar {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        /* FILTER BAR */
+        .filter-bar {
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 12px 35px rgba(0,0,0,.08);
+            margin-top: -40px;
+        }
+
+        /* TABS */
+        .nav-tabs {
+            border-bottom: none;
+        }
+        .nav-tabs .nav-link {
+            font-weight: 500;
+            color: #6c757d;
+        }
+        .nav-tabs .nav-link.active {
+            color: #0f8b8d;
+            border-bottom: 3px solid #0f8b8d;
+            background: transparent;
+        }
+
+        /* CARDS */
+        .venue-card {
+            border-radius: 18px;
+            border: none;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(0,0,0,.08);
+            transition: all .3s ease;
+        }
+        .venue-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,.12);
+        }
+        .venue-card img {
+            height: 190px;
+            object-fit: cover;
+        }
+        .badge-bookable {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= HEADER (FROM INDEX) ================= -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid px-4">
+        <a class="navbar-brand" href="#">
+            <img src="./img/logo.png" alt="logo">
+            Smashers Zone
+        </a>
+        <div class="d-flex align-items-center gap-3 ms-3">
+            <i class="bi bi-geo-alt"></i>
+            <span>Hyderabad</span>
+        </div>
+
+        <div class="ms-auto d-flex align-items-center gap-4">
+            <!--<a href="#" class="get-app text-decoration-none">Get the App</a>-->
+
+            <ul class="navbar-nav flex-row gap-4">
+                <li class="nav-item"><a class="nav-link active" href="#">PLAY</a></li>
+                <li class="nav-item"><a class="nav-link" href="book.html">BOOK</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">TRAIN</a></li>
+                <li class="nav-item"><a class="nav-link" href="profile.html">PROFILE</a></li>
+            </ul>
+
+            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#loginModal">
+                Login / Signup
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="venues-hero text-center">
+    <div class="container">
+        <h1 class="fw-bold">Discover Sports Venues</h1>
+        <p class="lead">Book courts, join coaching, explore events near you</p>
+    </div>
+</section>
+
+<!-- ================= FILTER BAR ================= -->
+<div class="container">
+    <div class="filter-bar">
+        <div class="row g-3 align-items-center">
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="Search venue, academy or event">
+            </div>
+            <div class="col-md-3">
+                <select id="sportFilter" class="form-select">
+                    <option value="all">All Sports</option>
+                    <option value="cricket">Cricket</option>
+                    <option value="badminton">Badminton</option>
+                    <option value="football">Football</option>
+                </select>
+            </div>
+            <div class="col-md-3 text-md-end">
+                <span class="fw-semibold text-muted">
+                    <i class="bi bi-geo-alt"></i> Hyderabad
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ================= CONTENT ================= -->
+<div class="container py-5">
+
+    <!-- TABS -->
+    <ul class="nav nav-tabs justify-content-center mb-4" id="categoryTabs">
+        <li class="nav-item">
+            <button class="nav-link active" data-category="venues">Venues</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-category="coaching">Coaching</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-category="events">Events</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-category="experiences">Experiences</button>
+        </li>
+    </ul>
+
+    <!-- CARDS -->
+    <div class="row g-4" id="cardsContainer">
+
+        <div class="col-md-4 card-item" data-category="venues" data-sport="cricket">
+            <div class="card venue-card position-relative">
+                <img src="https://images.unsplash.com/photo-1593766788306-28561086694e">
+                <span class="badge bg-success badge-bookable">Bookable</span>
+                <div class="card-body">
+                    <h6 class="fw-semibold">PLR Box Cricket</h6>
+                    <small class="text-muted">Cricket • Mallampet</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 card-item" data-category="venues" data-sport="badminton">
+            <div class="card venue-card position-relative">
+                <img src="https://images.unsplash.com/photo-1609743522653-52354461eb27">
+                <span class="badge bg-success badge-bookable">Bookable</span>
+                <div class="card-body">
+                    <h6 class="fw-semibold">Sportzone Badminton Arena</h6>
+                    <small class="text-muted">Badminton • Mallampet</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 card-item" data-category="coaching" data-sport="badminton">
+            <div class="card venue-card">
+                <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc">
+                <div class="card-body">
+                    <h6 class="fw-semibold">Elite Badminton Coaching</h6>
+                    <small class="text-muted">Professional Training</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 card-item" data-category="events" data-sport="football">
+            <div class="card venue-card">
+                <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2">
+                <div class="card-body">
+                    <h6 class="fw-semibold">Weekend Football League</h6>
+                    <small class="text-muted">Tournament Event</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 card-item" data-category="experiences" data-sport="cricket">
+            <div class="card venue-card">
+                <img src="https://images.unsplash.com/photo-1521412644187-c49fa049e84d">
+                <div class="card-body">
+                    <h6 class="fw-semibold">Night Cricket Experience</h6>
+                    <small class="text-muted">Under Lights</small>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h4>Subscribe to our Newsletter!</h4>
+            </div>
+            <div class="col-md-6">
+                <form class="d-flex gap-2">
+                    <input type="email" class="form-control newsletter-input" placeholder="Your Email">
+                    <button class="newsletter-btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- Logo & About -->
+            <div class="col-md-4">
+                <div class="footer-logo">
+                    🏸 Smashers Zone
+                </div>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur.
+                    Scelerisque nibh gravida tellus viverra libero vel.
+                </p>
+            </div>
+
+            <!-- Menu -->
+            <div class="col-md-2">
+                <h6>MENU</h6>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Tournaments</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-md-3">
+                <h6>CONTACT US</h6>
+                <p class="footer-contact">
+                    <i class="fas fa-map-marker-alt"></i> 123 Main Street, Anytown, USA
+                </p>
+                <p class="footer-contact">
+                    <i class="fas fa-phone"></i> +1 233 898 0897
+                </p>
+                <p class="footer-contact">
+                    <i class="fas fa-envelope"></i> email@example.com
+                </p>
+            </div>
+
+            <!-- Social -->
+            <div class="col-md-3">
+                <h6>FOLLOW US!</h6>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            ©2026 Smashers Zone All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+<!-- Scroll To Top -->
+<a href="#" class="scroll-top">
+    <i class="fas fa-chevron-up"></i>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+<!-- LOGIN / SIGNUP MODAL -->
+<div class="modal fade login-modal" id="loginModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="row g-0 h-100">
+
+                <!-- LEFT IMAGE -->
+                <div class="col-md-6 d-none d-md-block banner-section"></div>
+
+                <!-- RIGHT FORM -->
+                <div class="col-md-6 form-section position-relative">
+
+                    <!-- Close -->
+                    <button type="button" class="btn-close position-absolute top-0 end-0 m-4"
+                            data-bs-dismiss="modal"></button>
+
+                    <h4>Login / Sign up</h4>
+                    <p class="text-muted mb-4">
+                        Enter your mobile number to continue
+                    </p>
+
+                    <form>
+                        <div class="input-group mb-4">
+                            <span class="input-group-text country-code">+91</span>
+                            <input type="tel" class="form-control" placeholder="Mobile Number">
+                        </div>
+
+                        <button class="btn btn-success w-100 py-2 fw-semibold">
+                            Continue
+                        </button>
+
+                        <p class="small text-muted mt-4">
+                            By continuing, you agree to PLAYO’s
+                            <a href="#" class="text-success">Terms & Conditions</a>
+                        </p>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- JS -->
+<script>
+    let activeCategory = "venues";
+
+    document.querySelectorAll("#categoryTabs button").forEach(tab => {
+        tab.addEventListener("click", () => {
+            document.querySelectorAll("#categoryTabs button").forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+            activeCategory = tab.dataset.category;
+            filterCards();
+        });
+    });
+
+    document.getElementById("sportFilter").addEventListener("change", filterCards);
+
+    function filterCards() {
+        const sport = document.getElementById("sportFilter").value;
+
+        document.querySelectorAll(".card-item").forEach(card => {
+            const categoryMatch = card.dataset.category === activeCategory;
+            const sportMatch = sport === "all" || card.dataset.sport === sport;
+            card.style.display = (categoryMatch && sportMatch) ? "block" : "none";
+        });
+    }
+
+    filterCards();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
