@@ -2,133 +2,279 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Team Page – Smashers CC</title>
+    <title>Badminton Tournament – Match Center</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://santvan3207.github.io/SmasherZone/css/style.css">
-    <style>
-        body {
-            background:#f4f5f7;
-            font-family: "Segoe UI", sans-serif;
-        }
 
-        /* HERO */
-        .team-hero {
-            background:#e31c25;
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!--<link rel="stylesheet" href="https://santvan3207.github.io/SmasherZone/css/style.css">-->
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+           /* HEADER */
+        .tournament-header{
+            background:linear-gradient(135deg,#1e3c72,#2a5298);
             color:#fff;
             padding:30px 0;
         }
-        .team-logo {
-            width:90px;
-            height:90px;
-            border-radius:12px;
-            object-fit:cover;
-        }
-        .stat-box {
-            background:rgba(255,255,255,0.15);
-            border-radius:14px;
-            padding:18px;
-            text-align:center;
+        .tournament-header::before{
+            content:"";
+            position:absolute;
+            inset:0;
+            background: linear-gradient(
+                90deg,
+                rgba(15,118,110,0.85),
+                rgba(15,23,42,0.65)
+            );
         }
 
-        /* TABS */
-        .nav-tabs .nav-link {
+        .tournament-header .container{
+            position: relative;
+            z-index: 1;
+        }
+       <!-- .tournament-logo{
+            width:107px;
+            height:107px;
+            border-radius:12px;
+            background:#000;
+        }-->
+       .tournament-logo{
+                width: 90px;
+                height: 90px;
+                border-radius: 14px;
+                object-fit: contain;
+                background: rgba(255,255,255,0.15);
+               <!-- padding: 8px;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.4);-->
+            }
+
+        .tournament-header{
+            position: relative;
+            background: url("./img/bgcover.jpg") center/cover no-repeat;
+            color: #fff;
+            padding: 40px 0;
+            height: 250px;
+        }
+        .tournament-header h4{
+            text-shadow: 0 3px 8px rgba(0,0,0,0.6);
+        }
+
+        .tournament-header small{
+            opacity: 0.9;
+        }
+        /* Dark overlay for readability */
+        .tournament-header::before{
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+        }
+
+        /* Keep content above overlay */
+        .tournament-header .container{
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-card{
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+}
+
+.stat-card h3{
+    color: #fff;
+    font-weight: 700;
+}
+
+.nav-tabs{
+    border-bottom: none;
+}
+
+.nav-tabs .nav-link{
+    border: none;
+    color: var(--muted);
+    font-weight: 600;
+    padding: 12px 18px;
+}
+
+/*.nav-tabs .nav-link.active{
+    color: var(--primary);
+    border-bottom: 3px solid var(--secondary);
+    background: transparent;
+}*/
+
+.btn-outline-light{
+    border-radius: 25px;
+    border: 1px solid rgba(255,255,255,.7);
+}
+
+.btn-outline-light:hover{
+    background: var(--secondary);
+    border-color: var(--secondary);
+}
+
+
+
+        /* NAV TABS */
+        .nav-tabs .nav-link{
             font-weight:600;
             color:#555;
         }
-        .nav-tabs .nav-link.active {
-            color:#e31c25;
-            border-bottom:3px solid #e31c25;
+       /* .nav-tabs .nav-link.active{
+            color:#1e3c72;
+            border-bottom:3px solid #1e3c72;
+        }*/
+
+        /* MATCH CARD */
+        .match-card{
+            background: var(--card-bg);
+            border-radius: 18px;
+            padding: 18px;
+            box-shadow: 0 12px 28px rgba(0,0,0,.08);
+            transition: transform .3s ease, box-shadow .3s ease;
         }
 
-        /* CARDS */
-        .player-card {
-            border-radius:14px;
-            box-shadow:0 6px 20px rgba(0,0,0,0.08);
-            border:none;
-        }
-        .player-img {
-            width:70px;
-            height:70px;
-            border-radius:50%;
-            object-fit:cover;
+        .match-card:hover{
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px rgba(0,0,0,.12);
         }
 
-        /* HORIZONTAL SCROLL */
-        .horizontal-scroll {
-            display:flex;
-            gap:16px;
-            overflow-x:auto;
-            padding-bottom:10px;
+        .score{
+            color: var(--primary);
+            font-weight: 700;
         }
-        .horizontal-scroll::-webkit-scrollbar {
-            height:6px;
+
+        .result{
+            color: var(--secondary);
+            font-weight: 600;
         }
-        .horizontal-scroll::-webkit-scrollbar-thumb {
-            background:#ccc;
-            border-radius:10px;
+        .badge.bg-dark{
+            background: var(--primary)!important;
         }
+
+
+
+        /* FOOTER */
+        footer{
+            background:#111;
+            color:#bbb;
+        }
+        footer{
+    background: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    color: var(--muted);
+}
+
+footer h6{
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.social-icons a{
+    background: var(--primary);
+    color: #fff;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icons a:hover{
+    background: var(--secondary);
+}
+
     </style>
 </head>
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
-<nav class="navbar navbar-expand-lg bg-white shadow-sm">
-    <div class="container">
-        <a class="navbar-brand fw-bold text-danger" href="#">CricHeroes</a>
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="#">Live Scores</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Teams</a></li>
-            <li class="nav-item"><a class="btn btn-outline-danger ms-2">Sign In</a></li>
-        </ul>
+<!-- TOP NAV -->
+<!-- HEADER -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid px-4">
+        <a class="navbar-brand" href="#">
+            <img src="./img/logo.png" alt="logo">
+            Smashers Zone
+        </a>
+        <div class="d-flex align-items-center gap-3 ms-3">
+            <i class="bi bi-geo-alt"></i>
+            <span>Hyderabad</span>
+        </div>
+
+        <div class="ms-auto d-flex align-items-center gap-4">
+            <!--<a href="#" class="get-app text-decoration-none">Get the App</a>-->
+
+            <ul class="navbar-nav flex-row gap-4">
+                <li class="nav-item"><a class="nav-link active" href="#">PLAY</a></li>
+                <li class="nav-item"><a class="nav-link" href="book.html">BOOK</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">TRAIN</a></li>
+                <li class="nav-item"><a class="nav-link" href="profile.html">PROFILE</a></li>
+            </ul>
+
+            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#loginModal">
+                Login / Signup
+            </button>
+        </div>
     </div>
 </nav>
 
-<!-- ================= TEAM HERO ================= -->
-<section class="team-hero">
+<!-- HEADER -->
+<section class="tournament-header">
     <div class="container">
         <div class="row align-items-center">
+
             <div class="col-md-8 d-flex gap-3">
-                <img src="https://cdn-icons-png.flaticon.com/512/861/861512.png" class="team-logo">
+                <div class="tournament-logo">
+                    <img src="img/team-logo.jpg" alt="Tournament Logo" class="tournament-logo">
+                </div>
                 <div>
-                    <h3 class="fw-bold mb-1">Smashers Cricket Club</h3>
-                    <p class="mb-1">Hyderabad, India</p>
-                    <small>Founded: 2018</small>
+                    <h4 class="fw-bold mb-1">All India Open Badminton Championship</h4>
+                    <small>Bengaluru · 12,340 Views</small><br>
+                    <small>12 Aug 2025 – 20 Aug 2025</small><br>
+                    <button class="btn btn-outline-light btn-sm mt-2">Contact Organizer</button>
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="row g-2">
                     <div class="col-6">
-                        <div class="stat-box">
-                            <h3 class="fw-bold">48</h3>
-                            <small>Matches</small>
+                        <div class="stat-card">
+                            <h3>64</h3>
+                            <small>Total Matches</small>
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="stat-box">
-                            <h3 class="fw-bold">32</h3>
-                            <small>Wins</small>
+                        <div class="stat-card">
+                            <h3>128</h3>
+                            <small>Players</small>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
 
-<!-- ================= TABS ================= -->
+<!-- TABS -->
 <section class="bg-white shadow-sm">
     <div class="container">
-        <ul class="nav nav-tabs py-2" id="teamTabs" role="tablist">
+        <ul class="nav nav-tabs py-2" role="tablist">
 
             <li class="nav-item">
-                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#overview" type="button">
-                    Overview
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#matches" type="button">
+                    Matches
                 </button>
             </li>
 
@@ -145,12 +291,6 @@
             </li>
 
             <li class="nav-item">
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#matches" type="button">
-                    Matches
-                </button>
-            </li>
-
-            <li class="nav-item">
                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#gallery" type="button">
                     Gallery
                 </button>
@@ -160,35 +300,76 @@
     </div>
 </section>
 
-<!-- ================= TAB CONTENT ================= -->
+<!-- TAB CONTENT -->
 <section class="container py-4">
     <div class="tab-content">
 
-        <!-- OVERVIEW -->
-        <div class="tab-pane fade show active" id="overview">
-            <h5 class="fw-bold">Team Overview</h5>
-            <p class="text-muted">
-                Smashers Cricket Club is a competitive cricket team participating in
-                local and national tournaments since 2018.
-            </p>
+        <!-- MATCHES -->
+        <div class="tab-pane fade show active" id="matches">
+            <div class="row g-4">
+
+                <div class="col-md-4">
+                    <div class="card match-card p-3">
+                        <div class="d-flex justify-content-between match-header">
+                            <span>Men’s Singles · Quarter Final</span>
+                            <span class="badge bg-dark">Completed</span>
+                        </div>
+
+                        <h6 class="mt-2">Court 1</h6>
+                        <div class="d-flex justify-content-between">
+                            <span>Rahul Verma</span>
+                            <span class="score">21, 21</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>Arjun Mehta</span>
+                            <span>17, 15</span>
+                        </div>
+
+                        <div class="result text-success mt-2">
+                            Rahul Verma won the match
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card match-card p-3">
+                        <div class="d-flex justify-content-between match-header">
+                            <span>Women’s Doubles · Semi Final</span>
+                            <span class="badge bg-dark">Completed</span>
+                        </div>
+
+                        <h6 class="mt-2">Court 2</h6>
+                        <div class="d-flex justify-content-between">
+                            <span>Pooja / Neha</span>
+                            <span class="score">21, 21</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span>Ananya / Ritu</span>
+                            <span>19, 18</span>
+                        </div>
+
+                        <div class="result text-success mt-2">
+                            Pooja / Neha advanced to Final
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
         <!-- PLAYERS -->
         <div class="tab-pane fade" id="players">
-            <div class="row g-4">
+            <div class="row g-3">
                 <div class="col-md-3">
-                    <div class="card player-card p-3 text-center">
-                        <img src="https://randomuser.me/api/portraits/men/31.jpg" class="player-img mx-auto mb-2">
-                        <h6>Arjun Mehta</h6>
-                        <small class="text-muted">Batsman</small>
+                    <div class="card text-center p-3">
+                        <strong>Rahul Verma</strong><br>
+                        Men’s Singles
                     </div>
                 </div>
-
                 <div class="col-md-3">
-                    <div class="card player-card p-3 text-center">
-                        <img src="https://randomuser.me/api/portraits/men/52.jpg" class="player-img mx-auto mb-2">
-                        <h6>Vikas Singh</h6>
-                        <small class="text-muted">All-rounder</small>
+                    <div class="card text-center p-3">
+                        <strong>Ananya Singh</strong><br>
+                        Women’s Singles
                     </div>
                 </div>
             </div>
@@ -196,54 +377,83 @@
 
         <!-- STATS -->
         <div class="tab-pane fade" id="stats">
-            <ul class="list-group">
-                <li class="list-group-item">Matches Played: <strong>48</strong></li>
-                <li class="list-group-item">Matches Won: <strong>32</strong></li>
-                <li class="list-group-item">Win Percentage: <strong>66%</strong></li>
+            <ul>
+                <li>Total Matches Played: 42</li>
+                <li>Fastest Smash: 385 km/h</li>
+                <li>Average Match Duration: 42 mins</li>
             </ul>
-        </div>
-
-        <!-- MATCHES -->
-        <div class="tab-pane fade" id="matches">
-            <div class="horizontal-scroll">
-                <div class="card player-card p-3" style="min-width:260px;">
-                    <h6>Smashers vs Titans</h6>
-                    <p class="mb-1">Smashers won by 5 wickets</p>
-                    <small class="text-muted">T20 Match</small>
-                </div>
-
-                <div class="card player-card p-3" style="min-width:260px;">
-                    <h6>Smashers vs Warriors</h6>
-                    <p class="mb-1">Lost by 12 runs</p>
-                    <small class="text-muted">League Match</small>
-                </div>
-            </div>
         </div>
 
         <!-- GALLERY -->
         <div class="tab-pane fade" id="gallery">
             <div class="row g-3">
-                <div class="col-md-3">
-                    <img src="https://picsum.photos/300/200" class="img-fluid rounded">
-                </div>
-                <div class="col-md-3">
-                    <img src="https://picsum.photos/301/200" class="img-fluid rounded">
-                </div>
+                <div class="col-md-4"><div class="bg-secondary text-white p-5 text-center">Photo</div></div>
+                <div class="col-md-4"><div class="bg-secondary text-white p-5 text-center">Photo</div></div>
             </div>
         </div>
 
     </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
-<footer class="bg-dark text-white py-4 mt-5">
-    <div class="container text-center">
-        <small>© 2026 Smashers CC · Inspired by CricHeroes</small>
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- Logo & About -->
+            <div class="col-md-4">
+                <div class="footer-logo">
+                    🏸 Smashers Zone
+                </div>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur.
+                    Scelerisque nibh gravida tellus viverra libero vel.
+                </p>
+            </div>
+
+            <!-- Menu -->
+            <div class="col-md-2">
+                <h6>MENU</h6>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Tournaments</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-md-3">
+                <h6>CONTACT US</h6>
+                <p class="footer-contact">
+                    <i class="fas fa-map-marker-alt"></i> 123 Main Street, Anytown, USA
+                </p>
+                <p class="footer-contact">
+                    <i class="fas fa-phone"></i> +1 233 898 0897
+                </p>
+                <p class="footer-contact">
+                    <i class="fas fa-envelope"></i> email@example.com
+                </p>
+            </div>
+
+            <!-- Social -->
+            <div class="col-md-3">
+                <h6>FOLLOW US!</h6>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            ©2026 Smashers Zone All Rights Reserved.
+        </div>
     </div>
 </footer>
 
-<!-- Bootstrap JS (MANDATORY) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
